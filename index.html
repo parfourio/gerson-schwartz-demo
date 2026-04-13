@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerson & Schwartz | Miami Personal Injury Lawyers | Since 1970</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0f2240;
+      --navy-mid: #1a3460;
+      --navy-light: #243a6e;
+      --gold: #c8903a;
+      --gold-light: #dca84e;
+      --gold-pale: #f5ead6;
+      --white: #ffffff;
+      --off-white: #f8f5f0;
+      --text: #222222;
+      --text-light: #555555;
+      --border: #ddd4c0;
+      --red: #8b1a1a;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); font-size: 16px; line-height: 1.6; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: var(--navy); padding: 0 40px; height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.4);
+    }
+    .nav-logo { display: flex; flex-direction: column; gap: 0; }
+    .nav-logo-main { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--white); letter-spacing: 0.01em; }
+    .nav-logo-sub { font-size: 0.6rem; font-weight: 500; color: var(--gold-light); letter-spacing: 0.14em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.82); text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-cta { background: var(--gold) !important; color: var(--white) !important; padding: 10px 20px !important; border-radius: 3px !important; font-weight: 600 !important; }
+    .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; background: none; border: none; }
+    .hamburger span { display: block; width: 26px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: 72px; left: 0; right: 0; background: var(--navy); padding: 24px 32px 32px; z-index: 999; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+    .mobile-menu.open { display: block; }
+    .mobile-menu ul { list-style: none; display: flex; flex-direction: column; }
+    .mobile-menu ul li a { display: block; padding: 14px 0; color: rgba(255,255,255,0.88); text-decoration: none; font-size: 0.95rem; font-weight: 500; border-bottom: 1px solid rgba(255,255,255,0.08); transition: color 0.2s; }
+    .mobile-menu ul li:last-child a { border-bottom: none; }
+    .mobile-menu ul li a:hover { color: var(--gold-light); }
+    .mobile-cta { margin-top: 20px; display: block; background: var(--gold); color: var(--white); text-align: center; padding: 14px; border-radius: 4px; font-weight: 600; text-decoration: none; }
+
+    /* OUTREACH BANNER */
+    .outreach-banner { background: linear-gradient(90deg, #b8781e, #d4922a, #b8781e); color: #fff; padding: 12px 24px; position: sticky; top: 0; z-index: 2000; box-shadow: 0 2px 12px rgba(0,0,0,0.25); }
+    .outreach-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 12px; }
+    .outreach-wave { font-size: 1.2rem; flex-shrink: 0; }
+    .outreach-banner p { flex: 1; font-family: 'Inter', sans-serif; font-size: 0.88rem; line-height: 1.5; color: rgba(255,255,255,0.95); margin: 0; }
+    .outreach-banner p strong { color: #fff; font-weight: 700; }
+    .outreach-reply-btn { display: inline-block; background: rgba(255,255,255,0.22); color: #fff !important; text-decoration: none !important; padding: 4px 12px; border-radius: 100px; font-weight: 700 !important; font-size: 0.82rem; white-space: nowrap; transition: background 0.2s; }
+    .outreach-reply-btn:hover { background: rgba(255,255,255,0.38) !important; }
+    .outreach-close { background: rgba(255,255,255,0.2); border: none; color: #fff; width: 26px; height: 26px; border-radius: 50%; cursor: pointer; font-size: 0.75rem; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+    .outreach-close:hover { background: rgba(255,255,255,0.38); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; background: var(--navy);
+      display: flex; align-items: center; padding: 72px 0 0;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg-text {
+      position: absolute; right: -20px; top: 50%; transform: translateY(-50%);
+      font-family: 'Playfair Display', serif; font-size: 22rem; font-weight: 900;
+      color: rgba(255,255,255,0.025); line-height: 1; user-select: none; pointer-events: none;
+    }
+    .hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold)); }
+    .hero-inner { max-width: 1200px; margin: 0 auto; padding: 90px 40px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; width: 100%; position: relative; z-index: 1; }
+    .hero-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
+    .hero-year { background: var(--gold); color: var(--white); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border-radius: 3px; }
+    .hero-eyebrow-text { font-size: 0.78rem; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
+    .hero h1 { font-size: 3.4rem; font-weight: 900; color: var(--white); line-height: 1.08; margin-bottom: 24px; }
+    .hero h1 em { font-style: normal; color: var(--gold-light); display: block; }
+    .hero-mission { font-size: 1rem; color: rgba(255,255,255,0.65); line-height: 1.75; margin-bottom: 36px; border-left: 3px solid var(--gold); padding-left: 18px; font-style: italic; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 40px; }
+    .btn-gold { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--white); padding: 14px 28px; border-radius: 4px; font-weight: 600; font-size: 0.92rem; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+    .btn-gold:hover { background: var(--gold-light); color: var(--navy); transform: translateY(-1px); }
+    .btn-outline { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--white); padding: 14px 28px; border-radius: 4px; border: 2px solid rgba(255,255,255,0.3); font-weight: 500; font-size: 0.92rem; text-decoration: none; transition: border-color 0.2s; }
+    .btn-outline:hover { border-color: var(--gold-light); color: var(--gold-light); }
+    .hero-spanish { display: inline-flex; align-items: center; gap: 8px; background: rgba(200,144,58,0.12); border: 1px solid rgba(200,144,58,0.3); color: var(--gold-light); padding: 7px 14px; border-radius: 6px; font-size: 0.8rem; font-weight: 500; }
+    .hero-right { display: flex; flex-direction: column; gap: 14px; }
+    .stat-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 20px 22px; display: flex; align-items: center; gap: 16px; }
+    .stat-icon { width: 44px; height: 44px; background: rgba(200,144,58,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+    .stat-label { font-size: 0.72rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; margin-bottom: 2px; }
+    .stat-value { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: var(--white); line-height: 1.1; }
+
+    /* TRUST BAR */
+    .trust-bar { background: var(--gold); padding: 14px 40px; }
+    .trust-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 36px; flex-wrap: wrap; }
+    .trust-item { display: flex; align-items: center; gap: 8px; color: var(--navy); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+    .trust-divider { width: 1px; height: 18px; background: rgba(0,0,0,0.2); }
+
+    /* SECTIONS */
+    .section { padding: 90px 40px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .section-title { font-size: 2.4rem; font-weight: 700; color: var(--navy); margin-bottom: 16px; }
+    .section-lead { font-size: 1.02rem; color: var(--text-light); line-height: 1.75; max-width: 640px; }
+    .bg-offwhite { background: var(--off-white); }
+    .bg-navy { background: var(--navy); }
+    .bg-navy .section-title { color: var(--white); }
+    .bg-navy .section-label { color: var(--gold-light); }
+    .bg-navy .section-lead { color: rgba(255,255,255,0.65); }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+    .about-left p { color: var(--text-light); line-height: 1.8; margin-bottom: 20px; font-size: 0.97rem; }
+    .mission-block { background: var(--navy); border-radius: 12px; padding: 28px 30px; margin-top: 10px; }
+    .mission-block p { color: rgba(255,255,255,0.78); font-style: italic; font-size: 0.95rem; line-height: 1.7; margin: 0; }
+    .mission-block cite { display: block; color: var(--gold-light); font-style: normal; font-size: 0.8rem; font-weight: 600; margin-top: 12px; letter-spacing: 0.04em; }
+    .about-right {}
+    .credential-card { background: var(--off-white); border: 1.5px solid var(--border); border-radius: 10px; padding: 20px 22px; display: flex; align-items: flex-start; gap: 14px; margin-bottom: 14px; transition: border-color 0.2s; }
+    .credential-card:hover { border-color: var(--gold); }
+    .credential-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .credential-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); font-weight: 600; margin-bottom: 3px; }
+    .credential-value { font-size: 0.94rem; color: var(--text); font-weight: 500; line-height: 1.4; }
+
+    /* PRACTICE AREAS */
+    .practice-intro { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 44px; }
+    .practice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .practice-card { background: var(--white); border: 1.5px solid var(--border); border-radius: 10px; padding: 26px 22px; position: relative; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; }
+    .practice-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transition: transform 0.3s; }
+    .practice-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(15,34,64,0.1); border-color: var(--gold); }
+    .practice-card:hover::after { transform: scaleX(1); }
+    .practice-icon { font-size: 1.8rem; margin-bottom: 12px; }
+    .practice-card h3 { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+    .practice-card p { font-size: 0.82rem; color: var(--text-light); line-height: 1.6; }
+    .miami-specialty { background: rgba(200,144,58,0.06); border-color: rgba(200,144,58,0.3) !important; }
+
+    /* RESULTS */
+    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .result-card { text-align: center; padding: 32px 24px; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; background: rgba(255,255,255,0.04); }
+    .result-number { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: var(--gold-light); line-height: 1; margin-bottom: 8px; }
+    .result-desc { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
+
+    /* TESTIMONIALS */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-top: 48px; }
+    .t-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 28px 26px; transition: background 0.2s; }
+    .t-card:hover { background: rgba(200,144,58,0.07); border-color: rgba(200,144,58,0.3); }
+    .t-stars { display: flex; gap: 3px; margin-bottom: 12px; color: var(--gold); font-size: 0.9rem; }
+    .t-text { font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.75; font-style: italic; margin-bottom: 16px; }
+    .t-author { display: flex; align-items: center; gap: 12px; }
+    .t-avatar { width: 38px; height: 38px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 0.88rem; color: var(--navy); }
+    .t-name { font-weight: 600; color: var(--white); font-size: 0.88rem; }
+    .t-case { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+
+    /* CTA */
+    .cta-bg { background: linear-gradient(135deg, var(--gold) 0%, #a87030 100%); padding: 80px 40px; text-align: center; }
+    .cta-bg h2 { font-size: 2.4rem; color: var(--white); margin-bottom: 12px; }
+    .cta-bg p { color: rgba(255,255,255,0.85); font-size: 1.02rem; margin-bottom: 36px; }
+    .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-white { display: inline-flex; align-items: center; gap: 8px; background: var(--white); color: var(--navy); padding: 14px 30px; border-radius: 4px; font-weight: 700; font-size: 0.95rem; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+    .btn-white:hover { background: var(--navy); color: var(--white); transform: translateY(-2px); }
+    .btn-outline-white { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--white); padding: 14px 30px; border-radius: 4px; border: 2px solid rgba(255,255,255,0.6); font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: background 0.2s; }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.12); border-color: white; }
+
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; margin-top: 44px; }
+    .contact-item { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 20px; }
+    .contact-icon { width: 40px; height: 40px; background: var(--gold-pale); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+    .contact-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-light); font-weight: 600; margin-bottom: 2px; }
+    .contact-value { font-size: 0.94rem; color: var(--text); font-weight: 500; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-light); margin-bottom: 6px; }
+    .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--text); background: var(--white); outline: none; transition: border-color 0.2s; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--navy); }
+    .form-group textarea { height: 100px; resize: vertical; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-submit { width: 100%; padding: 14px; background: var(--navy); color: var(--white); border: none; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    .form-submit:hover { background: var(--gold); }
+
+    /* FOOTER */
+    footer { background: var(--navy); padding: 48px 40px 28px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 24px; }
+    .footer-tagline { font-size: 0.78rem; color: rgba(255,255,255,0.38); margin-top: 6px; font-style: italic; }
+    .footer-links { display: flex; gap: 56px; }
+    .footer-col h4 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold-light); margin-bottom: 14px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 8px; }
+    .footer-col ul li a { color: rgba(255,255,255,0.48); text-decoration: none; font-size: 0.84rem; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--gold-light); }
+    .footer-bottom { display: flex; justify-content: space-between; font-size: 0.76rem; color: rgba(255,255,255,0.38); }
+    .footer-disclaimer { font-size: 0.7rem; color: rgba(255,255,255,0.25); margin-top: 16px; line-height: 1.6; }
+
+    /* CONCEPT BADGE */
+    .concept-badge { position: fixed; bottom: 20px; right: 20px; background: var(--navy); color: rgba(255,255,255,0.7); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.05em; padding: 7px 12px; border-radius: 100px; border: 1px solid rgba(200,144,58,0.3); z-index: 9999; pointer-events: none; }
+    .concept-badge strong { color: var(--gold-light); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-inner { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero-bg-text { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .practice-grid { grid-template-columns: repeat(2,1fr); }
+      .results-grid { grid-template-columns: 1fr; gap: 16px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .section { padding: 64px 24px; }
+      .footer-top { flex-direction: column; gap: 32px; }
+      .footer-links { gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 8px; }
+      .practice-intro { flex-direction: column; align-items: flex-start; gap: 16px; }
+    }
+    @media (max-width: 560px) {
+      .hero h1 { font-size: 2rem; }
+      .section-title { font-size: 1.85rem; }
+      .practice-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; }
+      .trust-inner { gap: 18px; }
+      .trust-divider { display: none; }
+      .cta-bg h2 { font-size: 1.9rem; }
+      .footer-links { flex-direction: column; gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- OUTREACH BANNER -->
+  <div class="outreach-banner" id="outreachBanner">
+    <div class="outreach-inner">
+      <span class="outreach-wave">👋</span>
+      <p>
+        <strong>Hi Philip</strong> — I built this free concept for <strong>Gerson & Schwartz</strong> because a firm with your history and reputation deserves a website that reflects it. No obligation — I'd love your honest feedback.
+        &nbsp;<a class="outreach-reply-btn" href="mailto:scott.schultz.solutions@gmail.com?subject=Re%3A%20Your%20Website%20Concept%20%E2%80%94%20Gerson%20%26%20Schwartz&body=Hi%20Scott%2C%0A%0AI%20checked%20out%20the%20concept%20you%20built%20for%20Gerson%20%26%20Schwartz%20and%20wanted%20to%20reach%20out...">Reply to Scott →</a>
+      </p>
+      <button class="outreach-close" onclick="document.getElementById('outreachBanner').style.display='none'">✕</button>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <span class="nav-logo-main">Gerson &amp; Schwartz</span>
+      <span class="nav-logo-sub">Accident &amp; Injury Lawyers · Est. 1970</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">Our Firm</a></li>
+      <li><a href="#practice">Practice Areas</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#contact" class="nav-cta">Free Consultation</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#about" onclick="closeMobile()">Our Firm</a></li>
+      <li><a href="#practice" onclick="closeMobile()">Practice Areas</a></li>
+      <li><a href="#results" onclick="closeMobile()">Results</a></li>
+      <li><a href="#testimonials" onclick="closeMobile()">Testimonials</a></li>
+      <li><a href="#contact" onclick="closeMobile()">Contact</a></li>
+    </ul>
+    <a href="#contact" class="mobile-cta" onclick="closeMobile()">Free Consultation →</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg-text">1970</div>
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-eyebrow">
+          <span class="hero-year">Est. 1970</span>
+          <span class="hero-eyebrow-text">Miami's Trusted Injury Firm</span>
+        </div>
+        <h1>We Find the Truth.<br><em>And Use It in Court.</em></h1>
+        <p class="hero-mission">"Our mission is simple. Our job is to find the truth and use it in courtrooms to get justice for our clients — and thereby promote safety for others."</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-gold">Free Case Evaluation →</a>
+          <a href="tel:3053716000" class="btn-outline">📞 (305) 371-6000</a>
+        </div>
+        <div class="hero-spanish">🇪🇸 Se Habla Español</div>
+      </div>
+      <div class="hero-right">
+        <div class="stat-card">
+          <div class="stat-icon">📅</div>
+          <div>
+            <div class="stat-label">In Practice Since</div>
+            <div class="stat-value">1970 — Over 50 Years</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⚖️</div>
+          <div>
+            <div class="stat-label">Collective Experience</div>
+            <div class="stat-value">100+ Years Combined</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🏅</div>
+          <div>
+            <div class="stat-label">Attorney Rating</div>
+            <div class="stat-value">AV Preeminent® Rated</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🎓</div>
+          <div>
+            <div class="stat-label">Education</div>
+            <div class="stat-value">Univ. of Miami School of Law</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-inner">
+      <div class="trust-item">⭐ AV Preeminent® Rated</div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">🤝 No Fee Unless We Win</div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">📞 24/7 Availability</div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">🇪🇸 Se Habla Español</div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">⚖️ Trial-Ready Attorneys</div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-left">
+          <p class="section-label">Our Story</p>
+          <h2 class="section-title">A Half-Century of Fighting for Injury Victims</h2>
+          <p>Founded by Philip M. Gerson in 1970, Gerson & Schwartz has spent over fifty years as one of Miami's most respected personal injury firms. We have appeared in every Florida state and federal court, and we don't back down — we bring cases to trial when that's what justice requires.</p>
+          <p>Contrary to the trend with many larger firms, we have remained deliberately small. Every client's case is worked on by our partners directly. You will never be handed off to a junior associate or lost in a system built for volume. Your case matters here.</p>
+          <p>Our senior partners are honors graduates of the University of Miami School of Law and hold the highest attorney rating — AV Preeminent® — awarded by Martindale-Hubbell. They are consistently recognized in "Super Lawyers" and South Florida Business Review's "Top Lawyers."</p>
+          <div class="mission-block">
+            <p>"Our mission is simple. Our job is to find the truth and use it in courtrooms to get justice for our clients and thereby promote safety for others. We won't hesitate to bring your case to trial — to a jury, and to the highest court in the land."</p>
+            <cite>— Gerson &amp; Schwartz, Accident &amp; Injury Lawyers</cite>
+          </div>
+        </div>
+        <div class="about-right">
+          <div class="credential-card">
+            <div class="credential-icon">📅</div>
+            <div>
+              <div class="credential-label">Established</div>
+              <div class="credential-value">Founded 1970 by Philip M. Gerson — over 50 years serving Miami-Dade County</div>
+            </div>
+          </div>
+          <div class="credential-card">
+            <div class="credential-icon">🏅</div>
+            <div>
+              <div class="credential-label">Top Rating</div>
+              <div class="credential-value">AV Preeminent® — the highest possible Martindale-Hubbell peer-review rating</div>
+            </div>
+          </div>
+          <div class="credential-card">
+            <div class="credential-icon">⭐</div>
+            <div>
+              <div class="credential-label">Recognition</div>
+              <div class="credential-value">Consistently listed in Super Lawyers and South Florida Business Review Top Lawyers</div>
+            </div>
+          </div>
+          <div class="credential-card">
+            <div class="credential-icon">🎓</div>
+            <div>
+              <div class="credential-label">Education</div>
+              <div class="credential-value">Senior partners are honors graduates of the University of Miami School of Law</div>
+            </div>
+          </div>
+          <div class="credential-card">
+            <div class="credential-icon">🤝</div>
+            <div>
+              <div class="credential-label">Our Approach</div>
+              <div class="credential-value">Deliberately small — every case worked by partners, never passed off to an associate</div>
+            </div>
+          </div>
+          <div class="credential-card">
+            <div class="credential-icon">🇪🇸</div>
+            <div>
+              <div class="credential-label">Languages</div>
+              <div class="credential-value">English and Spanish — serving Miami's diverse community since day one</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRACTICE AREAS -->
+  <section class="section bg-offwhite" id="practice">
+    <div class="section-inner">
+      <div class="practice-intro">
+        <div>
+          <p class="section-label">What We Handle</p>
+          <h2 class="section-title">Practice Areas</h2>
+        </div>
+        <a href="#contact" class="btn-gold" style="white-space:nowrap;">Free Case Review →</a>
+      </div>
+      <div class="practice-grid">
+        <div class="practice-card">
+          <div class="practice-icon">🚗</div>
+          <h3>Car &amp; Auto Accidents</h3>
+          <p>Head-on collisions, DUI crashes, rideshare accidents, and every mechanism of vehicle injury. We've litigated these since 1971.</p>
+        </div>
+        <div class="practice-card">
+          <div class="practice-icon">🏍️</div>
+          <h3>Motorcycle Accidents</h3>
+          <p>We understand the unique legal challenges riders face and have successfully brought many motorcycle claims to trial.</p>
+        </div>
+        <div class="practice-card">
+          <div class="practice-icon">🚛</div>
+          <h3>Truck Accidents</h3>
+          <p>We know how to investigate commercial trucking cases and uncover falsified logs — even when companies try to hide them.</p>
+        </div>
+        <div class="practice-card">
+          <div class="practice-icon">🏢</div>
+          <h3>Premises Liability &amp; Slip/Fall</h3>
+          <p>What looks like a simple fall often isn't. We prove landlord and business negligence when others give up too soon.</p>
+        </div>
+        <div class="practice-card">
+          <div class="practice-icon">🧠</div>
+          <h3>Catastrophic Injuries</h3>
+          <p>Brain injuries, spinal cord damage, burns, and paralysis — we fight for the full scope of your lifelong damages.</p>
+        </div>
+        <div class="practice-card miami-specialty">
+          <div class="practice-icon">🚢</div>
+          <h3>Cruise Ship Accidents</h3>
+          <p>Complex maritime and international law applies at sea. Our lawyers have the specialized knowledge to navigate these cases.</p>
+        </div>
+        <div class="practice-card">
+          <div class="practice-icon">⚕️</div>
+          <h3>Medical Malpractice</h3>
+          <p>From misdiagnosis to surgical errors, we hold medical professionals accountable when patients are harmed by negligence.</p>
+        </div>
+        <div class="practice-card">
+          <div class="practice-icon">🛡️</div>
+          <h3>Negligent Security &amp; Crime Victims</h3>
+          <p>Over 50 years representing crime victims in civil court — hotels, apartment complexes, venues, and public spaces.</p>
+        </div>
+        <div class="practice-card">
+          <div class="practice-icon">💔</div>
+          <h3>Wrongful Death</h3>
+          <p>When negligence takes a loved one, Florida law allows families to seek justice. We will see it through with you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="section bg-navy" id="results">
+    <div class="section-inner">
+      <p class="section-label">Track Record</p>
+      <h2 class="section-title">Decades of Results in Florida Courts</h2>
+      <p class="section-lead">We don't settle for quick payouts. We prepare every case for trial and fight for what our clients actually deserve.</p>
+      <div class="results-grid">
+        <div class="result-card">
+          <div class="result-number">50+</div>
+          <div class="result-desc">Years of continuous practice in Miami personal injury law, since 1970</div>
+        </div>
+        <div class="result-card">
+          <div class="result-number">100+</div>
+          <div class="result-desc">Combined years of experience among firm partners — trial-tested, court-proven</div>
+        </div>
+        <div class="result-card">
+          <div class="result-number">AV®</div>
+          <div class="result-desc">Preeminent rating from Martindale-Hubbell — the highest honor in legal peer review</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section bg-navy" id="testimonials" style="padding-top: 20px;">
+    <div class="section-inner">
+      <p class="section-label">Client Voices</p>
+      <h2 class="section-title">What Clients Say</h2>
+      <div class="testimonials-grid">
+        <div class="t-card">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-text">"Philip Gerson and his team took my accident case when I didn't know where to turn. They were direct, honest about the process, and fought every step of the way. I never felt like just a number — they truly treated me like family. The result far exceeded what I expected."</p>
+          <div class="t-author"><div class="t-avatar">M</div><div><div class="t-name">Maria T.</div><div class="t-case">Auto Accident, Miami-Dade</div></div></div>
+        </div>
+        <div class="t-card">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-text">"I was injured on a cruise and had no idea who to turn to. Gerson & Schwartz knew exactly what to do — they understand maritime law in a way that most attorneys don't. They kept me informed throughout and got a result I never thought possible. Couldn't recommend them more highly."</p>
+          <div class="t-author"><div class="t-avatar">R</div><div><div class="t-name">Robert K.</div><div class="t-case">Cruise Ship Injury, Miami</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-bg">
+    <h2>Justice Doesn't Wait.</h2>
+    <p>Florida has strict deadlines on injury claims. Get a free, confidential case evaluation from our team today.</p>
+    <div class="cta-actions">
+      <a href="#contact" class="btn-white">Start Your Free Evaluation</a>
+      <a href="tel:3053716000" class="btn-outline-white">📞 (305) 371-6000</a>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="section-inner">
+      <p class="section-label">Reach Us</p>
+      <h2 class="section-title">Free Consultation — No Fee Unless We Win</h2>
+      <div class="contact-grid">
+        <div>
+          <div class="contact-item"><div class="contact-icon">📍</div><div><div class="contact-label">Location</div><div class="contact-value">Miami, Florida<br>Dade County &amp; Statewide</div></div></div>
+          <div class="contact-item"><div class="contact-icon">📞</div><div><div class="contact-label">Main Phone</div><div class="contact-value">(305) 371-6000</div></div></div>
+          <div class="contact-item"><div class="contact-icon">📱</div><div><div class="contact-label">Toll Free</div><div class="contact-value">(866) 453-2802</div></div></div>
+          <div class="contact-item"><div class="contact-icon">⏰</div><div><div class="contact-label">Availability</div><div class="contact-value">Available 24/7 — We come to you if needed</div></div></div>
+          <div class="contact-item"><div class="contact-icon">🇪🇸</div><div><div class="contact-label">Languages</div><div class="contact-value">English &amp; Spanish</div></div></div>
+        </div>
+        <div>
+          <div class="form-row">
+            <div class="form-group"><label>First Name</label><input type="text" placeholder="First name" /></div>
+            <div class="form-group"><label>Last Name</label><input type="text" placeholder="Last name" /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Phone</label><input type="tel" placeholder="(305) 000-0000" /></div>
+            <div class="form-group"><label>Email</label><input type="email" placeholder="you@email.com" /></div>
+          </div>
+          <div class="form-group">
+            <label>Type of Case</label>
+            <select>
+              <option>Select a practice area...</option>
+              <option>Car / Auto Accident</option>
+              <option>Motorcycle Accident</option>
+              <option>Truck Accident</option>
+              <option>Slip &amp; Fall / Premises Liability</option>
+              <option>Cruise Ship Accident</option>
+              <option>Medical Malpractice</option>
+              <option>Catastrophic Injury</option>
+              <option>Crime Victim / Negligent Security</option>
+              <option>Wrongful Death</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group"><label>What Happened?</label><textarea placeholder="Briefly describe your situation — completely confidential..."></textarea></div>
+          <button class="form-submit">Get a Free Case Evaluation</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="nav-logo"><span class="nav-logo-main">Gerson &amp; Schwartz</span><span class="nav-logo-sub">Accident &amp; Injury Lawyers · Est. 1970</span></div>
+          <p class="footer-tagline">"Finding the truth. Using it in courtrooms."</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col"><h4>Practice Areas</h4><ul><li><a href="#practice">Car Accidents</a></li><li><a href="#practice">Cruise Ship Injuries</a></li><li><a href="#practice">Medical Malpractice</a></li><li><a href="#practice">Premises Liability</a></li><li><a href="#practice">Wrongful Death</a></li></ul></div>
+          <div class="footer-col"><h4>Firm</h4><ul><li><a href="#about">About Us</a></li><li><a href="#results">Results</a></li><li><a href="#testimonials">Testimonials</a></li><li><a href="#contact">Contact</a></li></ul></div>
+        </div>
+      </div>
+      <div class="footer-bottom"><span>© 2025 Gerson &amp; Schwartz Accident &amp; Injury Lawyers. All rights reserved.</span><span>Miami, Florida · (305) 371-6000</span></div>
+      <p class="footer-disclaimer">This website is for informational purposes only and does not constitute legal advice. No attorney-client relationship is formed by viewing this site. Prior results do not guarantee similar outcomes. Licensed to practice in Florida.</p>
+    </div>
+  </footer>
+
+  <div class="concept-badge">Concept by <strong>Par4 Technology Solutions</strong></div>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+    function closeMobile() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        const t = document.querySelector(this.getAttribute('href'));
+        if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 80, behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
